@@ -8,6 +8,17 @@ use Classes\Strategy\StrategyInterface;
 
 class Player
 {
+
+
+    /** @var string */
+    private $name;
+
+    /** @var int */
+    private $health = 100;
+
+    /** @var StrategyInterface */
+    private $strategy;
+
     /**
      * Player constructor.
      * @param $name
@@ -39,16 +50,6 @@ class Player
         return ! $player->isAlive();
     }
 
-    /**
-     * @var string
-     */
-    private $name;
-
-    /** @var int */
-    private $health = 100;
-
-    /** @var StrategyInterface */
-    private $strategy;
 
     /**
      * @return bool

@@ -11,10 +11,20 @@ use Classes\Weapons\BazookaWeapon;
 use Classes\Weapons\BowWeapon;
 use Classes\Weapons\PunchWeapon;
 use Classes\Weapons\SpearWeapon;
+use Classes\Weapons\Weapon;
 use Classes\Weapons\WeaponInterface;
 
 class Strategy implements StrategyInterface
 {
+    /** @var WeaponInterface */
+    private $weapon;
+
+    /** @var ArmorInterface */
+    private $armor;
+
+    const offensive = 1;
+    const defensive = 2;
+
     /**
      * Strategy constructor.
      * @param string $strategy
@@ -23,11 +33,11 @@ class Strategy implements StrategyInterface
     {
         switch (strtolower($strategy))
         {
-            case 'offensive':
+            case self::offensive:
                 $this->setWeapon(new BazookaWeapon());
                 $this->randomArmor();
                 break;
-            case 'defensive':
+            case self::defensive:
                 $this->setArmor(new PlatinumArmor());
                 $this->randomWeapon();
                 break;
@@ -37,11 +47,16 @@ class Strategy implements StrategyInterface
         }
     }
 
-
+    /**
+     * @return Weapon
+     */
     public function randomWeapon()
     {
-        $i = random_int(1,4);
-        switch ($i)
+        try {
+            $randomWeapon = random_int(1, 4);
+        } catch (\Exception $e) {
+        }
+        switch ($randomWeapon)
         {
             case 1:
                 $this->setWeapon(new PunchWeapon());
@@ -60,8 +75,11 @@ class Strategy implements StrategyInterface
 
     public function randomArmor()
     {
-        $i = random_int(1,3);
-        switch ($i)
+        try {
+            $randomArmor = random_int(1, 3);
+        } catch (\Exception $e) {
+        }
+        switch ($randomArmor)
         {
             case 1:
                 $this->setArmor(new LeatherArmor());
@@ -76,19 +94,14 @@ class Strategy implements StrategyInterface
         }
     }
 
-
+    /**
+     * @return weapon Armor
+     */
     public  function randomize()
     {
         $this->randomArmor();
         $this->randomWeapon();
     }
-
-    /** @var WeaponInterface */
-    private $weapon;
-
-    /** @var ArmorInterface */
-    private $armor;
-
 
     /**
      * @return WeaponInterface|null
@@ -115,8 +128,10 @@ class Strategy implements StrategyInterface
         $this->weapon = $weapon;
     }
 
-
-    public function setArmor($armor)
+    /**
+     * @param ArmorInterface $
+     */
+    public function setArmor(ArmorInterface $armor)
     {
         $this->armor = $armor;
     }
