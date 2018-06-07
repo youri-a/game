@@ -8,6 +8,15 @@ use Classes\Strategy\StrategyInterface;
 
 class Player
 {
+    /** @var string */
+    private $name;
+
+    /** @var int */
+    private $health = 100;
+
+    /** @var StrategyInterface */
+    private $strategy;
+
     /**
      * Player constructor.
      * @param $name
@@ -27,7 +36,7 @@ class Player
      */
     public function attack(Player $player)
     {
-  /*      $damage = $this->getStrategy()->getWeapon()->getDamage();
+  /*    $damage = $this->getStrategy()->getWeapon()->getDamage();
         $armor = $player->getStrategy()->getArmor()->getDamageReduction();
         $reduction = $damage * $armor;
         $reddamage = $damage - $reduction;
@@ -39,16 +48,6 @@ class Player
         return ! $player->isAlive();
     }
 
-    /**
-     * @var string
-     */
-    private $name;
-
-    /** @var int */
-    private $health = 100;
-
-    /** @var StrategyInterface */
-    private $strategy;
 
     /**
      * @return bool
@@ -66,6 +65,10 @@ class Player
         return $this->name;
     }
 
+    /**
+     * @param $name
+     * @return mixed
+     */
     public function setName($name)
     {
         return $this->name = $name;
@@ -98,7 +101,7 @@ class Player
     /**
      * @param StrategyInterface $strategy
      */
-    public function setStrategy($strategy)
+    public function setStrategy(StrategyInterface $strategy)
     {
         $this->strategy = $strategy;
     }

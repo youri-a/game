@@ -115,7 +115,10 @@ printf($player1);
 <br /><br />
 
 <?php
-$i = 1;
+/**
+ *
+ */
+$turn = 1;
 if (isset($player2) && is_a($player2, "Classes\Player"))
     do {
         $player1->attack($player2);
@@ -145,7 +148,7 @@ if (isset($player2) && is_a($player2, "Classes\Player"))
         {
             echo $player1->getName() . " his health is: " . $player1->getHealth() . "<br />";
         }
-        if($i %3 == 0)
+        if($turn %3 == 0)
         {
             $player1->getStrategy()->randomize();
             echo $player1->getName() . " changes weapon to " . $player1->getStrategy()->getWeapon()->getName() . " and armor to " . $player1->getStrategy()->getArmor()->getName() . "<br />";
@@ -153,7 +156,7 @@ if (isset($player2) && is_a($player2, "Classes\Player"))
             $player2->getStrategy()->randomize();
             echo $player2->getName() . " changes weapon to " . $player2->getStrategy()->getWeapon()->getName() . " and armor to " . $player2->getStrategy()->getArmor()->getName() . "<br />";
         }
-        $i++;
+        $turn++;
     }
     while ($player1->isAlive() && $player2->isAlive());
 else echo "Nog geen namen ingegeven";

@@ -115,8 +115,10 @@ class Strategy implements StrategyInterface
         $this->weapon = $weapon;
     }
 
-
-    public function setArmor($armor)
+    /**
+     * @param ArmorInterface $armor
+     */
+    public function setArmor(ArmorInterface $armor)
     {
         $this->armor = $armor;
     }
@@ -128,7 +130,7 @@ class Strategy implements StrategyInterface
     public function getDamage()
     {
         if (!isset($this->weapon)) return 0;
-
+        else
         return $this->weapon->getDamage();
     }
 
@@ -139,7 +141,7 @@ class Strategy implements StrategyInterface
     public function getDamageReduction()
     {
         if (!isset($this->armor)) return 0;
-
+        else
         return $this->armor->getDamageReduction();
     }
 }
