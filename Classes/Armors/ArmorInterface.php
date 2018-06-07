@@ -5,12 +5,12 @@ namespace Classes\Armors;
 interface ArmorInterface
 {
     /**
-     * @return mixed
+     * @return string
      */
     public function getName();
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getDamageReduction();
 }

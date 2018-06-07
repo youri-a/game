@@ -80,10 +80,7 @@ class Player
         return $this->health;
     }
 
-    /**
-     * @return StrategyInterface
-     */
-    public function getStrategy() : Strategy
+    public function getStrategy()
     {
         return $this->strategy;
     }

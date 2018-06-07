@@ -31,7 +31,7 @@ class Strategy implements StrategyInterface
      */
     public function __construct($strategy = '')
     {
-        switch (strtolower($strategy))
+        switch ($strategy)
         {
             case self::offensive:
                 $this->setWeapon(new BazookaWeapon());
@@ -94,10 +94,7 @@ class Strategy implements StrategyInterface
         }
     }
 
-    /**
-     * @return weapon Armor
-     */
-    public  function randomize()
+    public function randomize()
     {
         $this->randomArmor();
         $this->randomWeapon();
